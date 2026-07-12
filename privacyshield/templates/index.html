@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block title %}PrivacyShield &mdash; Protect Sensitive Citizen Data{% endblock %}
+
+{% block content %}
+<section class="hero">
+  <div class="hero-copy">
+    <p class="eyebrow">Data anonymization prototype</p>
+    <h1>Redact what identifies them.<br>Keep what informs you.</h1>
+    <p class="hero-lede">
+      Upload a citizen dataset, pick the fields that expose real people, and PrivacyShield
+      masks names, IDs, phone numbers, emails, addresses and birth dates &mdash; so the
+      dataset stays useful without staying dangerous.
+    </p>
+
+    <form action="{{ url_for('upload') }}" method="post" enctype="multipart/form-data" class="upload-form" id="upload-form">
+      <label for="dataset-input" class="dropzone" id="dropzone">
+        <input type="file" name="dataset" id="dataset-input" accept=".csv,.xlsx,.xls" hidden>
+        <div class="dropzone-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="28" height="28">
+            <path d="M12 15V4M12 4 7.5 8.5M12 4l4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M4 15v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <span class="dropzone-title" id="dropzone-title">Drop a CSV or Excel file, or click to browse</span>
+        <span class="dropzone-sub">.csv &nbsp;&middot;&nbsp; .xlsx &nbsp;&middot;&nbsp; up to 20&nbsp;MB</span>
+      </label>
+      <button type="submit" class="btn btn-primary btn-block" id="upload-submit" disabled>
+        Upload dataset
+      </button>
+    </form>
+  </div>
+
+  <div class="hero-panel" aria-hidden="true">
+    <div class="scan-card">
+      <div class="scan-card-head">
+        <span class="scan-dot"></span>
+        <span class="scan-dot"></span>
+        <span class="scan-dot"></span>
+        <span class="scan-card-label">citizens.csv</span>
+      </div>
+      <div class="scan-row"><span>Name</span><span class="scan-before">John Michael</span><span class="scan-arrow">&rarr;</span><span class="scan-after">J**** M*******</span></div>
+      <div class="scan-row"><span>Phone</span><span class="scan-before">0712345678</span><span class="scan-arrow">&rarr;</span><span class="scan-after">071*****78</span></div>
+      <div class="scan-row"><span>Email</span><span class="scan-before">john@gmail.com</span><span class="scan-arrow">&rarr;</span><span class="scan-after">j***@gmail.com</span></div>
+      <div class="scan-row"><span>National ID</span><span class="scan-before">199912345678</span><span class="scan-arrow">&rarr;</span><span class="scan-after">********5678</span></div>
+      <div class="scan-row"><span>Address</span><span class="scan-before">Dar es Salaam</span><span class="scan-arrow">&rarr;</span><span class="scan-after">Region Hidden</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="features">
+  <div class="feature-card">
+    <div class="feature-num">01</div>
+    <h3>Detect</h3>
+    <p>Column headers are scanned automatically to flag likely names, IDs, phone numbers, emails, addresses and birth dates.</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-num">02</div>
+    <h3>Choose</h3>
+    <p>Review a live preview, confirm which columns to mask, and adjust the anonymization method per field.</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-num">03</div>
+    <h3>Protect</h3>
+    <p>Sensitive values are masked in place &mdash; structure and non-sensitive data stay fully intact for analysis.</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-num">04</div>
+    <h3>Download</h3>
+    <p>Export the protected dataset as CSV or Excel, ready to share or store without exposing real identities.</p>
+  </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  initUploadForm();
+</script>
+{% endblock %}

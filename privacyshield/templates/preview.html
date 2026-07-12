@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block title %}Preview &amp; Select Columns &mdash; PrivacyShield{% endblock %}
+
+{% block content %}
+<section class="workflow-header">
+  <ol class="steps">
+    <li class="step is-done">Upload</li>
+    <li class="step is-active">Select &amp; Preview</li>
+    <li class="step">Protect</li>
+    <li class="step">Download</li>
+  </ol>
+  <h1>{{ original_name }}</h1>
+  <p class="meta-line">{{ num_rows }} records &middot; {{ num_cols }} columns</p>
+</section>
+
+<form action="{{ url_for('anonymize', file_id=file_id) }}" method="post" id="anonymize-form">
+  <section class="panel">
+    <div class="panel-head">
+      <h2>Select columns to anonymize</h2>
+      <p class="panel-sub">Columns we suspect contain personal data are pre-selected. Adjust the method per column, or uncheck to leave a column untouched.</p>
+    </div>
+
+    <div class="column-grid">
+      {% for col in column_info %}
+      <label class="column-card {% if col.is_sensitive %}is-suggested{% endif %}">
+        <div class="column-card-top">
+          <input type="checkbox" name="selected_columns" value="{{ col.name }}" {% if col.is_sensitive %}checked{% endif %}>
+          <span class="column-name">{{ col.name }}</span>
+          {% if col.is_sensitive %}<span class="badge">Suggested</span>{% endif %}
+        </div>
+        <select name="type__{{ col.name }}" class="type-select">
+          {% for mtype in mask_types %}
+          <option value="{{ mtype }}" {% if mtype == col.suggested_type %}selected{% endif %}>{{ type_labels[mtype] }}</option>
+          {% endfor %}
+        </select>
+      </label>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="panel-head">
+      <h2>Dataset preview</h2>
+      <p class="panel-sub">First 10 records of {{ num_rows }}.</p>
+    </div>
+    <div class="table-scroll">
+      <table class="data-table">
+        <thead>
+          <tr>
+            {% for col in columns %}<th>{{ col }}</th>{% endfor %}
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in preview_rows %}
+          <tr>
+            {% for cell in row %}<td>{{ cell }}</td>{% endfor %}
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <div class="action-bar">
+    <a href="{{ url_for('home') }}" class="btn btn-ghost">Cancel</a>
+    <button type="submit" class="btn btn-primary">Anonymize dataset</button>
+  </div>
+</form>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  initSelectAllSync();
+</script>
+{% endblock %}
