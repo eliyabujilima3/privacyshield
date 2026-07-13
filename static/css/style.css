@@ -1,33 +1,33 @@
 /* ==========================================================================
-   PrivacyShield — design tokens
-   Palette taken from the project brief (blue cybersecurity theme).
-   Updated with: Georgia (elegant serif), Poppins (modern interactive), system fonts
+   PrivacyShield — Professional Navy Green & White Theme
+   Updated: Professional color scheme with excellent readability
    ========================================================================== */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Lora:wght@400;500;600&display=swap');
 
 :root {
-  --color-primary: #1E3A8A;
-  --color-primary-hover: #16296b;
-  --color-secondary: #2563EB;
-  --color-success: #10B981;
-  --color-bg: #F8FAFC;
-  --color-card: #FFFFFF;
-  --color-text: #1F2937;
-  --color-text-muted: #64748B;
-  --color-border: #E2E8F0;
-  --color-danger: #DC2626;
-  --color-danger-bg: #FEF2F2;
+  /* Professional Navy Green & White Palette */
+  --color-primary: #0D4A3E;           /* Deep Navy Green */
+  --color-primary-hover: #0A3A31;     /* Darker Navy Green */
+  --color-secondary: #2E8B7D;         /* Teal Green */
+  --color-success: #27AE60;           /* Bright Green */
+  --color-bg: #F5F9F8;                /* Off-white with green tint */
+  --color-card: #FFFFFF;              /* Pure White */
+  --color-text: #1A3F38;              /* Dark Navy Green */
+  --color-text-muted: #5A7B77;        /* Muted Green */
+  --color-border: #D4E4E1;            /* Light Green Border */
+  --color-danger: #C1352B;            /* Red (danger) */
+  --color-danger-bg: #FEF2F2;         /* Light red background */
 
-  /* Updated fonts: Georgia (elegant serif) + Poppins (modern interactive) */
-  --font-display: 'Poppins', 'Inter', sans-serif;
-  --font-body: 'Lora', 'Georgia', serif;
+  /* Modern Fonts: Poppins + Lora */
+  --font-display: 'Poppins', sans-serif;
+  --font-body: 'Lora', serif;
   --font-mono: 'JetBrains Mono', 'Courier New', monospace;
 
   --radius-sm: 8px;
   --radius-md: 14px;
   --radius-lg: 22px;
-  --shadow-card: 0 1px 2px rgba(15, 23, 42, 0.04), 0 8px 24px -12px rgba(30, 58, 138, 0.18);
-  --shadow-lift: 0 20px 45px -20px rgba(30, 58, 138, 0.35);
+  --shadow-card: 0 2px 8px rgba(13, 74, 62, 0.08), 0 4px 16px rgba(13, 74, 62, 0.12);
+  --shadow-lift: 0 10px 30px rgba(13, 74, 62, 0.15);
 }
 
 * { box-sizing: border-box; }
@@ -54,20 +54,20 @@ h1, h2, h3 {
   font-family: var(--font-display);
   letter-spacing: -0.02em;
   margin: 0;
-  color: #0F1E4D;
+  color: var(--color-primary);
   font-weight: 700;
 }
 
 a { color: inherit; }
 
-/* Faint grid texture behind everything — a quiet nod to a "data grid" */
+/* Grid overlay */
 .grid-overlay {
   position: fixed;
   inset: 0;
   z-index: -1;
   background-image:
-    linear-gradient(to right, rgba(30, 58, 138, 0.035) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(30, 58, 138, 0.035) 1px, transparent 1px);
+    linear-gradient(to right, rgba(13, 74, 62, 0.025) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(13, 74, 62, 0.025) 1px, transparent 1px);
   background-size: 42px 42px;
   mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 40%, transparent 90%);
 }
@@ -80,6 +80,8 @@ a { color: inherit; }
   align-items: center;
   justify-content: space-between;
   padding: 22px clamp(20px, 5vw, 64px);
+  background: white;
+  box-shadow: 0 2px 8px rgba(13, 74, 62, 0.06);
 }
 
 .brand {
@@ -98,7 +100,7 @@ a { color: inherit; }
 .brand-text {
   font-family: var(--font-display);
   font-size: 1.3rem;
-  color: #0F1E4D;
+  color: var(--color-primary);
   font-weight: 700;
 }
 .brand-text strong { color: var(--color-secondary); font-weight: 700; }
@@ -116,7 +118,7 @@ a { color: inherit; }
   height: 7px;
   border-radius: 50%;
   background: var(--color-success);
-  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.18);
+  box-shadow: 0 0 0 3px rgba(39, 174, 96, 0.18);
 }
 
 /* ==========================================================================
@@ -134,6 +136,8 @@ a { color: inherit; }
   font-size: 0.95rem;
   color: var(--color-text-muted);
   padding: 24px;
+  background: white;
+  border-top: 1px solid var(--color-border);
 }
 
 /* ==========================================================================
@@ -175,6 +179,7 @@ a { color: inherit; }
   font-size: clamp(2.4rem, 4vw, 3.4rem);
   line-height: 1.08;
   margin-bottom: 18px;
+  color: var(--color-primary);
 }
 
 .hero-lede {
@@ -195,14 +200,14 @@ a { color: inherit; }
   text-align: center;
   gap: 6px;
   padding: 36px 24px;
-  border: 1.5px dashed #A9BEE8;
+  border: 1.5px dashed var(--color-secondary);
   border-radius: var(--radius-md);
   background: #FFFFFF;
   cursor: pointer;
   transition: border-color 0.15s ease, background 0.15s ease, transform 0.15s ease;
 }
-.dropzone:hover { border-color: var(--color-secondary); background: #F5F8FF; }
-.dropzone.is-dragover { border-color: var(--color-secondary); background: #EFF4FF; transform: scale(1.01); }
+.dropzone:hover { border-color: var(--color-primary); background: #F5F9F8; }
+.dropzone.is-dragover { border-color: var(--color-primary); background: #EEF5F3; transform: scale(1.01); }
 .dropzone.has-file { border-style: solid; border-color: var(--color-success); background: #F0FDF9; }
 
 .dropzone-icon { color: var(--color-secondary); margin-bottom: 4px; }
@@ -234,9 +239,9 @@ a { color: inherit; }
   color: white;
   box-shadow: var(--shadow-lift);
 }
-.btn-primary:hover { background: var(--color-primary-hover); }
+.btn-primary:hover { background: var(--color-primary); }
 .btn-primary:disabled {
-  background: #B9C6E8;
+  background: #A8D4CF;
   cursor: not-allowed;
   box-shadow: none;
 }
@@ -246,7 +251,7 @@ a { color: inherit; }
   color: var(--color-secondary);
   border: 1.5px solid var(--color-secondary);
 }
-.btn-secondary:hover { background: #F5F8FF; }
+.btn-secondary:hover { background: #F5F9F8; }
 
 .btn-ghost {
   background: transparent;
@@ -257,14 +262,14 @@ a { color: inherit; }
 .btn-block { width: 100%; margin-top: 14px; }
 
 /* ==========================================================================
-   Hero panel — animated "scan card" signature element
+   Hero panel — animated "scan card"
    ========================================================================== */
 .hero-panel { display: flex; justify-content: center; }
 
 .scan-card {
   width: 100%;
   max-width: 380px;
-  background: #0F1E4D;
+  background: var(--color-primary);
   border-radius: var(--radius-lg);
   padding: 22px 22px 26px;
   box-shadow: var(--shadow-lift);
@@ -277,7 +282,7 @@ a { color: inherit; }
   position: absolute;
   left: 0; right: 0;
   height: 90px;
-  background: linear-gradient(180deg, rgba(37, 99, 235, 0.55), rgba(37, 99, 235, 0));
+  background: linear-gradient(180deg, rgba(46, 139, 125, 0.4), rgba(46, 139, 125, 0));
   top: -100px;
   animation: scan-sweep 3.2s ease-in-out infinite;
   pointer-events: none;
@@ -292,8 +297,8 @@ a { color: inherit; }
 }
 
 .scan-card-head { display: flex; align-items: center; gap: 6px; margin-bottom: 18px; }
-.scan-dot { width: 9px; height: 9px; border-radius: 50%; background: rgba(255,255,255,0.18); }
-.scan-card-label { margin-left: 8px; color: rgba(255,255,255,0.55); font-size: 0.85rem; }
+.scan-dot { width: 9px; height: 9px; border-radius: 50%; background: rgba(255,255,255,0.2); }
+.scan-card-label { margin-left: 8px; color: rgba(255,255,255,0.6); font-size: 0.85rem; }
 
 .scan-row {
   display: grid;
@@ -302,13 +307,13 @@ a { color: inherit; }
   gap: 8px;
   font-size: 0.85rem;
   padding: 9px 0;
-  border-top: 1px solid rgba(255,255,255,0.08);
-  color: rgba(255,255,255,0.85);
+  border-top: 1px solid rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.9);
 }
 .scan-row:first-of-type { border-top: none; }
-.scan-before { color: rgba(255,255,255,0.5); }
+.scan-before { color: rgba(255,255,255,0.6); }
 .scan-arrow { color: var(--color-success); text-align: center; }
-.scan-after { color: #6EE7B7; }
+.scan-after { color: #5FE3B4; }
 
 /* ==========================================================================
    Features
@@ -333,11 +338,11 @@ a { color: inherit; }
   color: var(--color-secondary);
   margin-bottom: 10px;
 }
-.feature-card h3 { font-size: 1.15rem; margin-bottom: 8px; }
+.feature-card h3 { font-size: 1.15rem; margin-bottom: 8px; color: var(--color-primary); }
 .feature-card p { font-size: 0.95rem; color: var(--color-text-muted); line-height: 1.6; margin: 0; }
 
 /* ==========================================================================
-   Workflow steps (preview / result pages)
+   Workflow steps
    ========================================================================== */
 .workflow-header { padding: 36px 0 26px; }
 
@@ -351,7 +356,7 @@ a { color: inherit; }
   font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: #B7C2DA;
+  color: var(--color-text-muted);
   flex-wrap: wrap;
 }
 .step { position: relative; padding-left: 18px; }
@@ -362,14 +367,14 @@ a { color: inherit; }
   transform: translateY(-50%);
   width: 8px; height: 8px;
   border-radius: 50%;
-  background: #D8DFEE;
+  background: var(--color-border);
 }
 .step.is-done { color: var(--color-secondary); }
 .step.is-done::before { background: var(--color-secondary); }
 .step.is-active { color: var(--color-primary); font-weight: 700; }
-.step.is-active::before { background: var(--color-success); box-shadow: 0 0 0 3px rgba(16,185,129,0.2); }
+.step.is-active::before { background: var(--color-success); box-shadow: 0 0 0 3px rgba(39, 174, 96, 0.2); }
 
-.workflow-header h1 { font-size: 1.9rem; margin-bottom: 6px; word-break: break-word; }
+.workflow-header h1 { font-size: 1.9rem; margin-bottom: 6px; word-break: break-word; color: var(--color-primary); }
 .meta-line { color: var(--color-text-muted); font-size: 1rem; margin: 0; }
 
 .success-title { display: flex; align-items: center; gap: 10px; color: var(--color-success); }
@@ -387,7 +392,7 @@ a { color: inherit; }
   box-shadow: var(--shadow-card);
 }
 .panel-head { margin-bottom: 18px; }
-.panel-head h2 { font-size: 1.3rem; margin-bottom: 6px; }
+.panel-head h2 { font-size: 1.3rem; margin-bottom: 6px; color: var(--color-primary); }
 .panel-sub { color: var(--color-text-muted); font-size: 0.95rem; margin: 0; }
 
 /* ==========================================================================
@@ -408,10 +413,10 @@ a { color: inherit; }
   gap: 10px;
   cursor: pointer;
   transition: border-color 0.12s ease, background 0.12s ease;
-  background: #FCFDFF;
+  background: #FCFDFB;
 }
-.column-card.is-suggested { border-color: #BFD2F7; background: #F5F8FF; }
-.column-card:has(input:checked) { border-color: var(--color-secondary); background: #EFF4FF; }
+.column-card.is-suggested { border-color: var(--color-border); background: #F5F9F8; }
+.column-card:has(input:checked) { border-color: var(--color-secondary); background: #EEF5F3; }
 
 .column-card-top {
   display: flex;
@@ -430,6 +435,7 @@ a { color: inherit; }
   text-overflow: ellipsis;
   white-space: nowrap;
   flex: 1;
+  color: var(--color-text);
 }
 .badge {
   font-family: var(--font-mono);
@@ -437,7 +443,7 @@ a { color: inherit; }
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: var(--color-secondary);
-  background: #E0E9FD;
+  background: #E8F4F1;
   padding: 3px 7px;
   border-radius: 999px;
   flex-shrink: 0;
@@ -472,9 +478,10 @@ a { color: inherit; }
   padding: 10px 14px;
   text-align: left;
   border-bottom: 1px solid var(--color-border);
+  color: var(--color-text);
 }
 .data-table th {
-  background: #F1F5FB;
+  background: #F5F9F8;
   font-family: var(--font-mono);
   font-size: 0.75rem;
   text-transform: uppercase;
@@ -482,9 +489,10 @@ a { color: inherit; }
   color: var(--color-text-muted);
   position: sticky;
   top: 0;
+  font-weight: 600;
 }
 .data-table tbody tr:last-child td { border-bottom: none; }
-.data-table tbody tr:hover { background: #F8FAFC; }
+.data-table tbody tr:hover { background: #F9FBFA; }
 
 /* ==========================================================================
    Action bar
@@ -504,9 +512,9 @@ a { color: inherit; }
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  background: #EFF4FF;
+  background: #EEF5F3;
   color: var(--color-primary);
-  border: 1px solid #BFD2F7;
+  border: 1px solid var(--color-border);
   border-radius: 999px;
   padding: 7px 13px;
   font-size: 0.9rem;
@@ -534,6 +542,7 @@ a { color: inherit; }
   letter-spacing: 0.06em;
   margin: 0 0 8px;
   font-weight: 600;
+  color: var(--color-text-muted);
 }
 .compare-before { color: var(--color-text-muted); }
 .compare-after { color: var(--color-success); }
@@ -554,7 +563,7 @@ a { color: inherit; }
   color: var(--color-secondary);
   letter-spacing: 0.1em;
 }
-.error-page h1 { font-size: 2rem; margin: 8px 0 14px; }
+.error-page h1 { font-size: 2rem; margin: 8px 0 14px; color: var(--color-primary); }
 .error-message { color: var(--color-text-muted); max-width: 46ch; margin: 0 auto 28px; font-size: 1.05rem; }
 
 /* ==========================================================================
